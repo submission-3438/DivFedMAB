@@ -1,17 +1,36 @@
-**Dataset Preparation**
+# Federated Learning Experiments
 
-The dataset generation process is described in detail in the paper. To prepare the data for experiments, follow these steps:
-1) Download the raw dataset file as specified in the paper.
-2) Partition the dataset among multiple clients according to the data distribution strategy described in the paper.
-3) This process will generate a JSON file containing the client-wise data.
-4) Convert the generated JSON file into LEAF format, which is required for running the experiments.
+This repository contains the implementation for running federated learning experiments as described in the paper.
 
-To run the code, use the following command:
+---
 
-python3 -u main.py --dataset=$name$ --optimizer='fedavg' \
-    --learning_rate=0.01 --num_rounds=1000 --clients_per_round=10 \
-    --eval_every=1 --batch_size=$add batch size$ \
-    --num_epochs=$enter epoch$ \
-    --model=$'add model name'$ \
+## Dataset Preparation
+
+The dataset generation process is described in detail in the paper. To prepare the dataset for experiments, follow the steps below:
+
+1. Download the raw dataset file as specified in the paper.
+2. Partition the dataset among multiple clients according to the data distribution strategy described in the paper.
+3. This process generates a JSON file containing client-wise data.
+4. Convert the generated JSON file into **LEAF format**, which is required for running the experiments.
+
+---
+
+## Installation
+
+Before running the code, install the required dependencies:
+
+pip install -r requirements.txt
+
+
+## Running the Code
+
+Use the following command to run the training script:
+
+python3 -u main.py --dataset=$1 --optimizer='fedavg' \
+    --learning_rate=0.01 --num_rounds=200 --clients_per_round=5 \
+    --eval_every=1 --batch_size=10 \
+    --num_epochs=1 \
+    --model='mclr' \
     --drop_percent=$2 \
     --clientsel_algo='submodular'
+
